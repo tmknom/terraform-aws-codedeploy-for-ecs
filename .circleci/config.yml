@@ -1,0 +1,13 @@
+# https://circleci.com/docs/2.0/building-docker-images/
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Setup makefile
+          command: make
+      - run:
+          name: Execute CI build
+          command: make cibuild
