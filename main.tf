@@ -2,6 +2,12 @@
 #
 # https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html
 
+# https://www.terraform.io/docs/providers/aws/r/codedeploy_app.html
+resource "aws_codedeploy_app" "default" {
+  compute_platform = "ECS"
+  name             = "${var.name}"
+}
+
 # ECS AWS CodeDeploy IAM Role
 #
 # https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/codedeploy_IAM_role.html

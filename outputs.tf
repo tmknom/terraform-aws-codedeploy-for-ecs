@@ -1,3 +1,13 @@
+output "codedeploy_app_id" {
+  value       = "${aws_codedeploy_app.default.id}"
+  description = "Amazon's assigned ID for the application."
+}
+
+output "codedeploy_app_name" {
+  value       = "${aws_codedeploy_app.default.name}"
+  description = "The application's name."
+}
+
 output "ecs_codedeploy_role_arn" {
   value       = "${aws_iam_role.default.arn}"
   description = "The Amazon Resource Name (ARN) specifying the ecs codedeploy."
