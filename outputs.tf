@@ -8,6 +8,11 @@ output "codedeploy_app_name" {
   description = "The application's name."
 }
 
+output "codedeploy_deployment_group_id" {
+  value       = "${aws_codedeploy_deployment_group.default.id}"
+  description = "Application name and deployment group name."
+}
+
 output "ecs_codedeploy_role_arn" {
   value       = "${aws_iam_role.default.arn}"
   description = "The Amazon Resource Name (ARN) specifying the ecs codedeploy."
