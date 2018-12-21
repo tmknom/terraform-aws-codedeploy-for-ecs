@@ -40,6 +40,18 @@ variable "auto_rollback_events" {
   description = "The event type or types that trigger a rollback."
 }
 
+variable "action_on_timeout" {
+  default     = "CONTINUE_DEPLOYMENT"
+  type        = "string"
+  description = "When to reroute traffic from an original environment to a replacement environment in a blue/green deployment."
+}
+
+variable "wait_time_in_minutes" {
+  default     = 10
+  type        = "string"
+  description = "The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually."
+}
+
 variable "termination_wait_time_in_minutes" {
   default     = 5
   type        = "string"

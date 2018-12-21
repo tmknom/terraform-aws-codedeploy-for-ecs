@@ -31,9 +31,19 @@ resource "aws_codedeploy_deployment_group" "default" {
   blue_green_deployment_config {
     # Information about how traffic is rerouted to instances in a replacement environment in a blue/green deployment.
     deployment_ready_option {
-      # Register new instances with the load balancer immediately after the new application
-      # revision is installed on the instances in the replacement environment.
-      action_on_timeout = "CONTINUE_DEPLOYMENT"
+      # Information about when to reroute traffic from an original environment to a replacement environment in a blue/green deployment.
+      #
+      # - CONTINUE_DEPLOYMENT: Register new instances with the load balancer immediately after the new application
+      #                        revision is installed on the instances in the replacement environment.
+      # - STOP_DEPLOYMENT: Do not register new instances with a load balancer unless traffic rerouting is started
+      #                    using ContinueDeployment. If traffic rerouting is not started before the end of the specified
+      #                    wait period, the deployment status is changed to Stopped.
+      action_on_timeout = "${var.action_on_timeout}"
+
+      # The number of minutes to wait before the status of a blue/green deployment is changed to Stopped
+      # if rerouting is not started manually. Applies only to the STOP_DEPLOYMENT option for action_on_timeout.
+      # Can not be set to STOP_DEPLOYMENT when timeout is set to 0 minutes.
+      wait_time_in_minutes = "${var.wait_time_in_minutes}"
     }
 
     # You can configure how instances in the original environment are terminated when a blue/green deployment is successful.
