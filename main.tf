@@ -38,7 +38,9 @@ resource "aws_codedeploy_deployment_group" "default" {
 
     # You can configure how instances in the original environment are terminated when a blue/green deployment is successful.
     terminate_blue_instances_on_deployment_success {
-      # Instances are terminated after a specified wait time.
+      # Valid values are TERMINATE or KEEP_ALIVE.
+      # If specified TERMINATE, then instances are terminated after a specified wait time.
+      # On the other hand, if specified KEEP_ALIVE, then occurred an unknown error when terraform apply.
       action = "TERMINATE"
 
       # The number of minutes to wait after a successful blue/green deployment before terminating instances
@@ -47,7 +49,7 @@ resource "aws_codedeploy_deployment_group" "default" {
     }
   }
 
-  # Only support BLUE_GREEN for ECS deployment.
+  # For ECS deployment, the deployment type must be BLUE_GREEN, and deployment option must be WITH_TRAFFIC_CONTROL.
   deployment_style {
     deployment_option = "WITH_TRAFFIC_CONTROL"
     deployment_type   = "BLUE_GREEN"
