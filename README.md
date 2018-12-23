@@ -104,6 +104,36 @@ module "codedeploy" {
 | ecs_codedeploy_role_name          | The name of the ecs codedeploy.                               |
 | ecs_codedeploy_role_unique_id     | The stable and unique string identifying the ecs codedeploy.  |
 
+## Troubleshooting
+
+### Invalid ECS Service's DeploymentController
+
+If you receive the following error message, ECS Service does not configured DeploymentController to CODE_DEPLOY.
+
+```shell
+* module.codedeploy.aws_codedeploy_deployment_group.default: 1 error(s) occurred:
+
+* aws_codedeploy_deployment_group.default: InvalidECSServiceException: Deployment group's ECS service must be configured for the external controller.
+    status code: 400, request id: 88404497-0379-11e9-88cd-9d6929f0e7ec
+```
+
+You should configure ECS Service's DeploymentController to CODE_DEPLOY.
+
+For Terraform:
+
+```hcl
+resource "aws_ecs_service" "default" {
+  ......
+
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
+}
+```
+
+For more information, see [Amazon ECS Deployment Types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
+in the Amazon Elastic Container Service Developer Guide.
+
 ## Development
 
 ### Requirements
