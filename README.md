@@ -8,11 +8,45 @@ Terraform module template following [Standard Module Structure](https://www.terr
 
 ## Usage
 
-Named `terraform-<PROVIDER>-<NAME>`. Module repositories must use this three-part name format.
+### Minimal
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/tmknom/terraform-aws-codedeploy-ecs/master/install | sh -s terraform-aws-sample
-cd terraform-aws-sample && make install
+```hcl
+module "codedeploy" {
+  source                     = "git::https://github.com/tmknom/terraform-aws-codedeploy-ecs.git?ref=tags/1.0.0"
+  name                       = "example"
+  ecs_cluster_name           = "${var.ecs_cluster_name}"
+  ecs_service_name           = "${var.ecs_service_name}"
+  lb_listener_arns           = ["${var.lb_listener_arns}"]
+  blue_lb_target_group_name  = "${var.blue_lb_target_group_name}"
+  green_lb_target_group_name = "${var.green_lb_target_group_name}"
+}
+```
+
+### Complete
+
+```hcl
+module "codedeploy" {
+  source                     = "git::https://github.com/tmknom/terraform-aws-codedeploy-ecs.git?ref=tags/1.0.0"
+  name                       = "example"
+  ecs_cluster_name           = "${var.ecs_cluster_name}"
+  ecs_service_name           = "${var.ecs_service_name}"
+  lb_listener_arns           = ["${var.lb_listener_arns}"]
+  blue_lb_target_group_name  = "${var.blue_lb_target_group_name}"
+  green_lb_target_group_name = "${var.green_lb_target_group_name}"
+
+  auto_rollback_enabled            = true
+  auto_rollback_events             = ["DEPLOYMENT_FAILURE"]
+  action_on_timeout                = "STOP_DEPLOYMENT"
+  wait_time_in_minutes             = 20
+  termination_wait_time_in_minutes = 20
+  test_traffic_route_listener_arns = []
+  ecs_codedeploy_path              = "/service-role/"
+  ecs_codedeploy_description       = "This is example"
+
+  tags = {
+    Environment = "prod"
+  }
+}
 ```
 
 ## Examples
