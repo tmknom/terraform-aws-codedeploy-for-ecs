@@ -6,6 +6,17 @@
 
 Terraform module which creates CodeDeploy for ECS resources on AWS.
 
+## Description
+
+Provision [Applications](https://docs.aws.amazon.com/codedeploy/latest/userguide/applications.html),
+[Deployment Groups](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups.html) and
+[AWS CodeDeploy IAM Role](https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/codedeploy_IAM_role.html).
+
+This module provides recommended settings:
+
+- ECS Blue/Green deployment
+- Enable automatically rollback
+
 ## Usage
 
 ### Minimal
