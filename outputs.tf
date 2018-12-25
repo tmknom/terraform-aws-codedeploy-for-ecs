@@ -13,57 +13,57 @@ output "codedeploy_deployment_group_id" {
   description = "Application name and deployment group name."
 }
 
-output "ecs_codedeploy_role_arn" {
+output "iam_role_arn" {
   value       = "${aws_iam_role.default.arn}"
-  description = "The Amazon Resource Name (ARN) specifying the ecs codedeploy."
+  description = "The Amazon Resource Name (ARN) specifying the IAM Role."
 }
 
-output "ecs_codedeploy_role_create_date" {
+output "iam_role_create_date" {
   value       = "${aws_iam_role.default.create_date}"
-  description = "The creation date of the ecs codedeploy."
+  description = "The creation date of the IAM Role."
 }
 
-output "ecs_codedeploy_role_unique_id" {
+output "iam_role_unique_id" {
   value       = "${aws_iam_role.default.unique_id}"
-  description = "The stable and unique string identifying the ecs codedeploy."
+  description = "The stable and unique string identifying the IAM Role."
 }
 
-output "ecs_codedeploy_role_name" {
+output "iam_role_name" {
   value       = "${aws_iam_role.default.name}"
-  description = "The name of the ecs codedeploy."
+  description = "The name of the IAM Role."
 }
 
-output "ecs_codedeploy_role_description" {
+output "iam_role_description" {
   value       = "${aws_iam_role.default.description}"
-  description = "The description of the ecs codedeploy."
+  description = "The description of the IAM Role."
 }
 
-output "ecs_codedeploy_policy_id" {
+output "iam_policy_id" {
   value       = "${aws_iam_policy.default.id}"
-  description = "The ecs codedeploy policy's ID."
+  description = "The IAM Policy's ID."
 }
 
-output "ecs_codedeploy_policy_arn" {
+output "iam_policy_arn" {
   value       = "${aws_iam_policy.default.arn}"
-  description = "The ARN assigned by AWS to this ecs codedeploy policy."
+  description = "The ARN assigned by AWS to this IAM Policy."
 }
 
-output "ecs_codedeploy_policy_description" {
+output "iam_policy_description" {
   value       = "${aws_iam_policy.default.description}"
-  description = "The description of the ecs codedeploy policy."
+  description = "The description of the IAM Policy."
 }
 
-output "ecs_codedeploy_policy_name" {
+output "iam_policy_name" {
   value       = "${aws_iam_policy.default.name}"
-  description = "The name of the ecs codedeploy policy."
+  description = "The name of the IAM Policy."
 }
 
-output "ecs_codedeploy_policy_path" {
+output "iam_policy_path" {
   value       = "${aws_iam_policy.default.path}"
-  description = "The path of the ecs codedeploy policy in IAM."
+  description = "The path of the IAM Policy."
 }
 
-output "ecs_codedeploy_policy_document" {
+output "iam_policy_document" {
   value       = "${aws_iam_policy.default.policy}"
-  description = "The policy document of the ecs codedeploy policy."
+  description = "The policy document of the IAM Policy."
 }
