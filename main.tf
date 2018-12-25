@@ -109,8 +109,8 @@ resource "aws_codedeploy_deployment_group" "default" {
 resource "aws_iam_role" "default" {
   name               = "${local.iam_name}"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
-  path               = "${var.ecs_codedeploy_path}"
-  description        = "${var.ecs_codedeploy_description}"
+  path               = "${var.iam_path}"
+  description        = "${var.iam_description}"
   tags               = "${merge(map("Name", local.iam_name), var.tags)}"
 }
 
@@ -129,8 +129,8 @@ data "aws_iam_policy_document" "assume_role_policy" {
 resource "aws_iam_policy" "default" {
   name        = "${local.iam_name}"
   policy      = "${data.aws_iam_policy_document.policy.json}"
-  path        = "${var.ecs_codedeploy_path}"
-  description = "${var.ecs_codedeploy_description}"
+  path        = "${var.iam_path}"
+  description = "${var.iam_description}"
 }
 
 data "aws_iam_policy_document" "policy" {

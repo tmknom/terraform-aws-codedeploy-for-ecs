@@ -13,8 +13,8 @@ module "codedeploy" {
   wait_time_in_minutes             = 20
   termination_wait_time_in_minutes = 20
   test_traffic_route_listener_arns = []
-  ecs_codedeploy_path              = "/service-role/"
-  ecs_codedeploy_description       = "This is example"
+  iam_path                         = "/service-role/"
+  iam_description                  = "This is example"
 
   tags = {
     Environment = "prod"

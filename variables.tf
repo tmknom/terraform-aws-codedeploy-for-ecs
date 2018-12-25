@@ -64,16 +64,16 @@ variable "test_traffic_route_listener_arns" {
   description = "List of Amazon Resource Names (ARNs) of the load balancer to route test traffic listeners."
 }
 
-variable "ecs_codedeploy_path" {
+variable "iam_path" {
   default     = "/"
   type        = "string"
-  description = "Path in which to create the ecs codedeploy role and the ecs codedeploy policy."
+  description = "Path in which to create the IAM Role and the IAM Policy."
 }
 
-variable "ecs_codedeploy_description" {
+variable "iam_description" {
   default     = "Managed by Terraform"
   type        = "string"
-  description = "The description of the ecs codedeploy role and the ecs codedeploy policy."
+  description = "The description of the IAM Role and the IAM Policy."
 }
 
 variable "tags" {
