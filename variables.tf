@@ -47,7 +47,7 @@ variable "action_on_timeout" {
 }
 
 variable "wait_time_in_minutes" {
-  default     = 10
+  default     = 0
   type        = "string"
   description = "The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually."
 }
