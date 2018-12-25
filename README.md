@@ -51,8 +51,8 @@ module "codedeploy" {
   wait_time_in_minutes             = 20
   termination_wait_time_in_minutes = 20
   test_traffic_route_listener_arns = []
-  ecs_codedeploy_path              = "/service-role/"
-  ecs_codedeploy_description       = "This is example"
+  iam_path                         = "/service-role/"
+  iam_description                  = "This is example"
 
   tags = {
     Environment = "prod"
@@ -78,31 +78,31 @@ module "codedeploy" {
 | action_on_timeout                | When to reroute traffic from an original environment to a replacement environment in a blue/green deployment.                       | string |                 `CONTINUE_DEPLOYMENT`                  |    no    |
 | auto_rollback_enabled            | Indicates whether a defined automatic rollback configuration is currently enabled for this Deployment Group.                        | string |                         `true`                         |    no    |
 | auto_rollback_events             | The event type or types that trigger a rollback.                                                                                    |  list  | `[ "DEPLOYMENT_FAILURE", "DEPLOYMENT_STOP_ON_ALARM" ]` |    no    |
-| ecs_codedeploy_description       | The description of the ecs codedeploy role and the ecs codedeploy policy.                                                           | string |                 `Managed by Terraform`                 |    no    |
-| ecs_codedeploy_path              | Path in which to create the ecs codedeploy role and the ecs codedeploy policy.                                                      | string |                          `/`                           |    no    |
+| iam_description                  | The description of the IAM Role and the IAM Policy.                                                                                 | string |                 `Managed by Terraform`                 |    no    |
+| iam_path                         | Path in which to create the IAM Role and the IAM Policy.                                                                            | string |                          `/`                           |    no    |
 | tags                             | A mapping of tags to assign to all resources.                                                                                       |  map   |                          `{}`                          |    no    |
 | termination_wait_time_in_minutes | The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.  | string |                          `5`                           |    no    |
 | test_traffic_route_listener_arns | List of Amazon Resource Names (ARNs) of the load balancer to route test traffic listeners.                                          |  list  |                          `[]`                          |    no    |
-| wait_time_in_minutes             | The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually. | string |                          `10`                          |    no    |
+| wait_time_in_minutes             | The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually. | string |                          `0`                           |    no    |
 
 ## Outputs
 
-| Name                              | Description                                                   |
-| --------------------------------- | ------------------------------------------------------------- |
-| codedeploy_app_id                 | Amazon's assigned ID for the application.                     |
-| codedeploy_app_name               | The application's name.                                       |
-| codedeploy_deployment_group_id    | Application name and deployment group name.                   |
-| ecs_codedeploy_policy_arn         | The ARN assigned by AWS to this ecs codedeploy policy.        |
-| ecs_codedeploy_policy_description | The description of the ecs codedeploy policy.                 |
-| ecs_codedeploy_policy_document    | The policy document of the ecs codedeploy policy.             |
-| ecs_codedeploy_policy_id          | The ecs codedeploy policy's ID.                               |
-| ecs_codedeploy_policy_name        | The name of the ecs codedeploy policy.                        |
-| ecs_codedeploy_policy_path        | The path of the ecs codedeploy policy in IAM.                 |
-| ecs_codedeploy_role_arn           | The Amazon Resource Name (ARN) specifying the ecs codedeploy. |
-| ecs_codedeploy_role_create_date   | The creation date of the ecs codedeploy.                      |
-| ecs_codedeploy_role_description   | The description of the ecs codedeploy.                        |
-| ecs_codedeploy_role_name          | The name of the ecs codedeploy.                               |
-| ecs_codedeploy_role_unique_id     | The stable and unique string identifying the ecs codedeploy.  |
+| Name                           | Description                                             |
+| ------------------------------ | ------------------------------------------------------- |
+| codedeploy_app_id              | Amazon's assigned ID for the application.               |
+| codedeploy_app_name            | The application's name.                                 |
+| codedeploy_deployment_group_id | Application name and deployment group name.             |
+| iam_policy_arn                 | The ARN assigned by AWS to this IAM Policy.             |
+| iam_policy_description         | The description of the IAM Policy.                      |
+| iam_policy_document            | The policy document of the IAM Policy.                  |
+| iam_policy_id                  | The IAM Policy's ID.                                    |
+| iam_policy_name                | The name of the IAM Policy.                             |
+| iam_policy_path                | The path of the IAM Policy.                             |
+| iam_role_arn                   | The Amazon Resource Name (ARN) specifying the IAM Role. |
+| iam_role_create_date           | The creation date of the IAM Role.                      |
+| iam_role_description           | The description of the IAM Role.                        |
+| iam_role_name                  | The name of the IAM Role.                               |
+| iam_role_unique_id             | The stable and unique string identifying the IAM Role.  |
 
 ## Troubleshooting
 
