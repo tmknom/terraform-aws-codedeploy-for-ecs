@@ -21,27 +21,9 @@ module "codedeploy" {
   }
 }
 
-variable "ecs_codedeploy_path" {
-  default     = "/"
-  type        = "string"
-  description = "Path in which to create the ecs codedeploy role and the ecs codedeploy policy."
-}
-
-variable "ecs_codedeploy_description" {
-  default     = "Managed by Terraform"
-  type        = "string"
-  description = "The description of the ecs codedeploy role and the ecs codedeploy policy."
-}
-
-variable "tags" {
-  default     = {}
-  type        = "map"
-  description = "A mapping of tags to assign to all resources."
-}
-
 module "ecs_fargate" {
   source                    = "git::https://github.com/tmknom/terraform-aws-ecs-fargate.git?ref=tags/1.0.0"
-  name                      = "example"
+  name                      = "codedeploy-ecs"
   container_name            = "${local.container_name}"
   container_port            = "${local.container_port}"
   cluster                   = "${aws_ecs_cluster.example.arn}"
@@ -67,7 +49,7 @@ data "template_file" "default" {
 }
 
 locals {
-  container_name = "nginx"
+  container_name = "example"
   container_port = "${module.alb.alb_target_group_port}"
 }
 
@@ -89,7 +71,7 @@ resource "aws_lb_target_group" "green" {
 
 module "alb" {
   source                     = "git::https://github.com/tmknom/terraform-aws-alb.git?ref=tags/1.4.1"
-  name                       = "alb-ecs-fargate"
+  name                       = "codedeploy-ecs"
   vpc_id                     = "${module.vpc.vpc_id}"
   subnets                    = ["${module.vpc.public_subnet_ids}"]
   access_logs_bucket         = "${module.s3_lb_log.s3_bucket_id}"
@@ -100,21 +82,21 @@ module "alb" {
 
 module "s3_lb_log" {
   source                = "git::https://github.com/tmknom/terraform-aws-s3-lb-log.git?ref=tags/1.0.0"
-  name                  = "s3-lb-log-ecs-fargate-${data.aws_caller_identity.current.account_id}"
+  name                  = "s3-lb-log-codedeploy-ecs-${data.aws_caller_identity.current.account_id}"
   logging_target_bucket = "${module.s3_access_log.s3_bucket_id}"
   force_destroy         = true
 }
 
 module "s3_access_log" {
   source        = "git::https://github.com/tmknom/terraform-aws-s3-access-log.git?ref=tags/1.0.0"
-  name          = "s3-access-log-ecs-fargate-${data.aws_caller_identity.current.account_id}"
+  name          = "s3-access-log-codedeploy-ecs-${data.aws_caller_identity.current.account_id}"
   force_destroy = true
 }
 
 module "vpc" {
   source                    = "git::https://github.com/tmknom/terraform-aws-vpc.git?ref=tags/1.0.0"
   cidr_block                = "${local.cidr_block}"
-  name                      = "vpc-ecs-fargate"
+  name                      = "codedeploy-ecs"
   public_subnet_cidr_blocks = ["${cidrsubnet(local.cidr_block, 8, 0)}", "${cidrsubnet(local.cidr_block, 8, 1)}"]
   public_availability_zones = ["${data.aws_availability_zones.available.names}"]
 }
