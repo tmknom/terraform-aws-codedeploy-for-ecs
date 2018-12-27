@@ -1,8 +1,8 @@
-# terraform-aws-codedeploy-ecs
+# terraform-aws-codedeploy-for-ecs
 
-[![CircleCI](https://circleci.com/gh/tmknom/terraform-aws-codedeploy-ecs.svg?style=svg)](https://circleci.com/gh/tmknom/terraform-aws-codedeploy-ecs)
-[![GitHub tag](https://img.shields.io/github/tag/tmknom/terraform-aws-codedeploy-ecs.svg)](https://registry.terraform.io/modules/tmknom/codedeploy-ecs/aws)
-[![License](https://img.shields.io/github/license/tmknom/terraform-aws-codedeploy-ecs.svg)](https://opensource.org/licenses/Apache-2.0)
+[![CircleCI](https://circleci.com/gh/tmknom/terraform-aws-codedeploy-for-ecs.svg?style=svg)](https://circleci.com/gh/tmknom/terraform-aws-codedeploy-for-ecs)
+[![GitHub tag](https://img.shields.io/github/tag/tmknom/terraform-aws-codedeploy-for-ecs.svg)](https://registry.terraform.io/modules/tmknom/codedeploy-for-ecs/aws)
+[![License](https://img.shields.io/github/license/tmknom/terraform-aws-codedeploy-for-ecs.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Terraform module which creates CodeDeploy for ECS resources on AWS.
 
@@ -23,7 +23,7 @@ This module provides recommended settings:
 
 ```hcl
 module "codedeploy" {
-  source                     = "git::https://github.com/tmknom/terraform-aws-codedeploy-ecs.git?ref=tags/1.1.0"
+  source                     = "git::https://github.com/tmknom/terraform-aws-codedeploy-for-ecs.git?ref=tags/1.1.0"
   name                       = "example"
   ecs_cluster_name           = "${var.ecs_cluster_name}"
   ecs_service_name           = "${var.ecs_service_name}"
@@ -37,7 +37,7 @@ module "codedeploy" {
 
 ```hcl
 module "codedeploy" {
-  source                     = "git::https://github.com/tmknom/terraform-aws-codedeploy-ecs.git?ref=tags/1.1.0"
+  source                     = "git::https://github.com/tmknom/terraform-aws-codedeploy-for-ecs.git?ref=tags/1.1.0"
   name                       = "example"
   ecs_cluster_name           = "${var.ecs_cluster_name}"
   ecs_service_name           = "${var.ecs_service_name}"
@@ -62,8 +62,8 @@ module "codedeploy" {
 
 ## Examples
 
-- [Minimal](https://github.com/tmknom/terraform-aws-codedeploy-ecs/tree/master/examples/minimal)
-- [Complete](https://github.com/tmknom/terraform-aws-codedeploy-ecs/tree/master/examples/complete)
+- [Minimal](https://github.com/tmknom/terraform-aws-codedeploy-for-ecs/tree/master/examples/minimal)
+- [Complete](https://github.com/tmknom/terraform-aws-codedeploy-for-ecs/tree/master/examples/complete)
 
 ## Inputs
 
@@ -151,8 +151,8 @@ export AWS_DEFAULT_REGION=ap-northeast-1
 ### Installation
 
 ```shell
-git clone git@github.com:tmknom/terraform-aws-codedeploy-ecs.git
-cd terraform-aws-codedeploy-ecs
+git clone git@github.com:tmknom/terraform-aws-codedeploy-for-ecs.git
+cd terraform-aws-codedeploy-for-ecs
 make install
 ```
 
@@ -183,7 +183,7 @@ Bump VERSION file, and run `make release`.
 
 ### Terraform Module Registry
 
-- <https://registry.terraform.io/modules/tmknom/codedeploy-ecs/aws>
+- <https://registry.terraform.io/modules/tmknom/codedeploy-for-ecs/aws>
 
 ## License
 
