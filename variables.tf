@@ -70,10 +70,10 @@ variable "iam_path" {
   description = "Path in which to create the IAM Role and the IAM Policy."
 }
 
-variable "iam_description" {
+variable "description" {
   default     = "Managed by Terraform"
   type        = "string"
-  description = "The description of the IAM Role and the IAM Policy."
+  description = "The description of the all resources."
 }
 
 variable "tags" {

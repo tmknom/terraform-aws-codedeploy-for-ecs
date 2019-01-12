@@ -14,7 +14,7 @@ module "codedeploy" {
   termination_wait_time_in_minutes = 20
   test_traffic_route_listener_arns = []
   iam_path                         = "/service-role/"
-  iam_description                  = "This is example"
+  description                      = "This is example"
 
   tags = {
     Environment = "prod"

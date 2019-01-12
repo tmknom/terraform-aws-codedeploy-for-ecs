@@ -52,7 +52,7 @@ module "codedeploy" {
   termination_wait_time_in_minutes = 20
   test_traffic_route_listener_arns = []
   iam_path                         = "/service-role/"
-  iam_description                  = "This is example"
+  description                      = "This is example"
 
   tags = {
     Environment = "prod"
@@ -78,7 +78,7 @@ module "codedeploy" {
 | action_on_timeout                | When to reroute traffic from an original environment to a replacement environment in a blue/green deployment.                       | string |                 `CONTINUE_DEPLOYMENT`                  |    no    |
 | auto_rollback_enabled            | Indicates whether a defined automatic rollback configuration is currently enabled for this Deployment Group.                        | string |                         `true`                         |    no    |
 | auto_rollback_events             | The event type or types that trigger a rollback.                                                                                    |  list  | `[ "DEPLOYMENT_FAILURE", "DEPLOYMENT_STOP_ON_ALARM" ]` |    no    |
-| iam_description                  | The description of the IAM Role and the IAM Policy.                                                                                 | string |                 `Managed by Terraform`                 |    no    |
+| description                      | The description of the all resources.                                                                                               | string |                 `Managed by Terraform`                 |    no    |
 | iam_path                         | Path in which to create the IAM Role and the IAM Policy.                                                                            | string |                          `/`                           |    no    |
 | tags                             | A mapping of tags to assign to all resources.                                                                                       |  map   |                          `{}`                          |    no    |
 | termination_wait_time_in_minutes | The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.  | string |                          `5`                           |    no    |

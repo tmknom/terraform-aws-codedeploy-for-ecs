@@ -110,7 +110,7 @@ resource "aws_iam_role" "default" {
   name               = "${local.iam_name}"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
   path               = "${var.iam_path}"
-  description        = "${var.iam_description}"
+  description        = "${var.description}"
   tags               = "${merge(map("Name", local.iam_name), var.tags)}"
 }
 
@@ -130,7 +130,7 @@ resource "aws_iam_policy" "default" {
   name        = "${local.iam_name}"
   policy      = "${data.aws_iam_policy_document.policy.json}"
   path        = "${var.iam_path}"
-  description = "${var.iam_description}"
+  description = "${var.description}"
 }
 
 data "aws_iam_policy_document" "policy" {
