@@ -23,7 +23,7 @@ resource "aws_codedeploy_deployment_group" "default" {
     enabled = "${var.auto_rollback_enabled}"
 
     # The event type or types that trigger a rollback. Supported types are DEPLOYMENT_FAILURE and DEPLOYMENT_STOP_ON_ALARM.
-    events = ["${var.auto_rollback_events}"]
+    events = "${var.auto_rollback_events}"
   }
 
   # You can configure options for a blue/green deployment.
@@ -79,7 +79,7 @@ resource "aws_codedeploy_deployment_group" "default" {
     target_group_pair_info {
       # The path used by a load balancer to route production traffic when an Amazon ECS deployment is complete.
       prod_traffic_route {
-        listener_arns = ["${var.lb_listener_arns}"]
+        listener_arns = "${var.lb_listener_arns}"
       }
 
       # One pair of target groups. One is associated with the original task set.
@@ -95,7 +95,7 @@ resource "aws_codedeploy_deployment_group" "default" {
       # An optional path used by a load balancer to route test traffic after an Amazon ECS deployment.
       # Validation can happen while test traffic is served during a deployment.
       test_traffic_route {
-        listener_arns = ["${var.test_traffic_route_listener_arns}"]
+        listener_arns = "${var.test_traffic_route_listener_arns}"
       }
     }
   }
