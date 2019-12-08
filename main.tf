@@ -120,7 +120,10 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
     principals {
       type        = "Service"
-      identifiers = ["codedeploy.amazonaws.com"]
+      identifiers = [
+        "codedeploy.amazonaws.com",
+        "ecs-tasks.amazonaws.com"
+      ]
     }
   }
 }
