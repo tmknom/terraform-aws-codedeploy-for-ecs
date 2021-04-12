@@ -136,6 +136,12 @@ resource "aws_iam_policy" "default" {
   policy      = data.aws_iam_policy_document.policy.json
   path        = var.iam_path
   description = var.description
+  tags = merge(
+    {
+      "Name" = local.iam_name
+    },
+    var.tags,
+  )
 }
 
 data "aws_iam_policy_document" "policy" {
