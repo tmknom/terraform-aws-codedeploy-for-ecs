@@ -6,6 +6,13 @@
 resource "aws_codedeploy_app" "default" {
   compute_platform = "ECS"
   name             = var.name
+
+  tags = merge(
+    {
+      "Name" = local.iam_name
+    },
+    var.tags,
+  )
 }
 
 # https://www.terraform.io/docs/providers/aws/r/codedeploy_deployment_group.html
@@ -99,6 +106,14 @@ resource "aws_codedeploy_deployment_group" "default" {
       }
     }
   }
+
+  tags = merge(
+  {
+    "Name" = local.iam_name
+  },
+  var.tags,
+  )
+
 }
 
 # ECS AWS CodeDeploy IAM Role
